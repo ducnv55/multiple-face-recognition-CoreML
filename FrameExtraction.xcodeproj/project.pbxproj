@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1E00693222278BCD006C82EB /* PlayingTime.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 1E00693122278BCD006C82EB /* PlayingTime.mlmodel */; };
+		1E221C7D2229098900D008A6 /* PlayingTime.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 1E221C7C2229098900D008A6 /* PlayingTime.mlmodel */; };
 		1E3338D222279982003A63ED /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3338D122279982003A63ED /* API.swift */; };
 		1E37FB9021F96AC000523311 /* CGImageProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E37FB8F21F96AC000523311 /* CGImageProperty.swift */; };
 		92E12213EFEA73C584B50E14 /* Pods_FrameExtraction.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 050DB75F6149C519827F9587 /* Pods_FrameExtraction.framework */; };
@@ -21,7 +21,7 @@
 
 /* Begin PBXFileReference section */
 		050DB75F6149C519827F9587 /* Pods_FrameExtraction.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FrameExtraction.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E00693122278BCD006C82EB /* PlayingTime.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = PlayingTime.mlmodel; sourceTree = "<group>"; };
+		1E221C7C2229098900D008A6 /* PlayingTime.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = PlayingTime.mlmodel; sourceTree = "<group>"; };
 		1E3338D122279982003A63ED /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		1E37FB8F21F96AC000523311 /* CGImageProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGImageProperty.swift; sourceTree = "<group>"; };
 		660633FB3D2D9D2E686AA72A /* Pods-FrameExtraction.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FrameExtraction.release.xcconfig"; path = "Pods/Target Support Files/Pods-FrameExtraction/Pods-FrameExtraction.release.xcconfig"; sourceTree = "<group>"; };
@@ -85,8 +85,8 @@
 		C3E867741E1488470042F78A /* FrameExtraction */ = {
 			isa = PBXGroup;
 			children = (
+				1E221C7C2229098900D008A6 /* PlayingTime.mlmodel */,
 				1E3338D022279963003A63ED /* API */,
-				1E00693122278BCD006C82EB /* PlayingTime.mlmodel */,
 				C3E867751E1488470042F78A /* AppDelegate.swift */,
 				C3E867771E1488470042F78A /* ViewController.swift */,
 				C3E867871E14898D0042F78A /* FrameExtractor.swift */,
@@ -232,9 +232,9 @@
 			files = (
 				C3E867881E14898D0042F78A /* FrameExtractor.swift in Sources */,
 				C3E867781E1488470042F78A /* ViewController.swift in Sources */,
-				1E00693222278BCD006C82EB /* PlayingTime.mlmodel in Sources */,
 				1E37FB9021F96AC000523311 /* CGImageProperty.swift in Sources */,
 				C3E867761E1488470042F78A /* AppDelegate.swift in Sources */,
+				1E221C7D2229098900D008A6 /* PlayingTime.mlmodel in Sources */,
 				1E3338D222279982003A63ED /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

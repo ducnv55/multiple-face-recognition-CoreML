@@ -9,22 +9,30 @@ import Vision
 import CoreML
 import ImageIO
 
+// time between each api call is 30 seconds per person
 let kRecognitionTimePeriod: Double = 30
 
 class ViewController: UIViewController, FrameExtractorDelegate {
     
     var frameExtractor: FrameExtractor!
     
-    var userList: [String:Int] = ["donghang": 1, "huyen": 3, "hoc": 5, "nam": 6]
+    var userList: [String:Int] = ["hang": 1, "huyen": 3, "hoc": 5, "nam": 4]
     var classifiedList: [String:Date] = [:]
     var isFaceExtracting: Bool = false
     var isFaceRecognize: Bool = false
     var totalFacesCount = 0
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var user1: UILabel!
+    @IBOutlet weak var user2: UILabel!
+    @IBOutlet weak var user3: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // most recently checked in user
+        user1.text = ""
+        user2.text = ""
+        user3.text = ""
         frameExtractor = FrameExtractor()
         frameExtractor.delegate = self
     }
@@ -50,16 +58,26 @@ class ViewController: UIViewController, FrameExtractorDelegate {
             req.results?.forEach({ (res) in
                 DispatchQueue.main.async {
                     guard let faceObservation = res as? VNFaceObservation else { return }
+                    // 1,5 2
                     let boundingBox = faceObservation.boundingBox
-                    let size = CGSize(width: boundingBox.width * self.view.bounds.width * 2.5,
-                                      height: boundingBox.height * self.view.bounds.height * 1.5)
-                    let origin = CGPoint(x: boundingBox.minX * self.view.bounds.width - boundingBox.width * self.view.bounds.width * 0.2,
+                    let size = CGSize(width: boundingBox.width * self.view.bounds.width * 1.5,
+                                      height: boundingBox.height * self.view.bounds.height * 2)
+                    let origin = CGPoint(x: boundingBox.minX * self.view.bounds.width,
                                          y: (1 - faceObservation.boundingBox.minY) * self.view.bounds.height - size.height)
                     
-                    self.applyDetectView(frame: CGRect(origin: origin, size: size))
+                    
+                    let size1 = CGSize(width: boundingBox.width * self.view.bounds.width * 2,
+                                      height: boundingBox.height * self.view.bounds.height * 4)
+                    let origin1 = CGPoint(x: boundingBox.minX * self.view.bounds.width * 0.9,
+                                         y: (1 - faceObservation.boundingBox.minY) * self.view.bounds.height - size.height + boundingBox.height * self.view.bounds.height * 2)
+                    
+                    
+                    let faceFrame = CGRect(origin: origin, size: size)
+                    self.applyDetectView(frame: faceFrame)
+                    let classifyFrame = CGRect(origin: origin1, size: size1)
                     
                     // crop only human's face in captured image
-                    let faceCGImage = image.cgImage?.cropping(to: CGRect(origin: origin, size: size))
+                    let faceCGImage = image.cgImage?.cropping(to: classifyFrame)
                     if let faceRaw = faceCGImage {
                         // use CoreML to recognize face in mlmodel file
                         self.updateClassifications(for: UIImage(cgImage: faceRaw))
@@ -135,8 +153,6 @@ class ViewController: UIViewController, FrameExtractorDelegate {
     
     /// - Tag: PerformRequests
     func updateClassifications(for image: UIImage) {
-        //        classificationLabel.text = "Classifying..."
-        print("Classifying...")
 
         let orientation = CGImagePropertyOrientation(image.imageOrientation)
         guard let ciImage = CIImage(image: image) else { fatalError("Unable to create \(CIImage.self) from \(image).") }
@@ -191,9 +207,9 @@ class ViewController: UIViewController, FrameExtractorDelegate {
     }
     
     func checkPersonIsTrusted(confidence: Float, name: String) {
-        print("\(name) - \(confidence)")
+//        print("\(name) - \(confidence)")
         // person with recognition's confidence more than 90% is trusted
-        if confidence > 0.9 {
+        if confidence > 0.4 {
             print("\(name) - \(confidence * 100)%")
             if classifiedList[name] == nil {
                 classifiedList[name] = Date()
@@ -211,10 +227,14 @@ class ViewController: UIViewController, FrameExtractorDelegate {
     }
     
     private func checkin(name: String) {
-        API.shared.callApi(endpoint: "/time.json", success: { (data) in
-            print(data as Any)
+        API.shared.callApi(endpoint: "/time.json", params: ["id": userList[name] as Any], success: { (data) in
+            print("\(name) send api successful")
+            let displayString = name.uppercased() + " has checked in"
+            self.user3.text = self.user2.text
+            self.user2.text = self.user1.text
+            self.user1.text = displayString
         }) { (error) in
-            print(error)
+            print("error \(error)")
         }
     }
 }

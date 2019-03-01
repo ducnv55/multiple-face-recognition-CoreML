@@ -65,7 +65,7 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
         guard let connection = videoOutput.connection(withMediaType: AVFoundation.AVMediaTypeVideo) else { return }
         guard connection.isVideoOrientationSupported else { return }
         guard connection.isVideoMirroringSupported else { return }
-        connection.videoOrientation = .portrait
+//        connection.videoOrientation = .portrait
         connection.isVideoMirrored = position == .front
     }
     

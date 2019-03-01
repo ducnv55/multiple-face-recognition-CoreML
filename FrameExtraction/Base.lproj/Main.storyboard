@@ -24,17 +24,44 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LKL-Lr-zk7">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffw-Pm-5cm">
+                                <rect key="frame" x="315.5" y="550" width="49.5" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMl-GM-FWR">
+                                <rect key="frame" x="315.5" y="628" width="49.5" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dts-4j-gw0">
+                                <rect key="frame" x="315.5" y="589" width="49.5" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="vMl-GM-FWR" secondAttribute="bottom" constant="10" id="CkI-sL-6hc"/>
+                            <constraint firstAttribute="trailing" secondItem="Ffw-Pm-5cm" secondAttribute="trailing" constant="10" id="KoL-OL-QqZ"/>
+                            <constraint firstItem="vMl-GM-FWR" firstAttribute="top" secondItem="Dts-4j-gw0" secondAttribute="bottom" constant="10" id="OHj-RN-JBM"/>
                             <constraint firstItem="LKL-Lr-zk7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Tcb-mv-ypP"/>
                             <constraint firstAttribute="trailing" secondItem="LKL-Lr-zk7" secondAttribute="trailing" id="Y9U-vx-RQX"/>
                             <constraint firstItem="LKL-Lr-zk7" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="hAb-Lc-QkI"/>
+                            <constraint firstItem="Dts-4j-gw0" firstAttribute="top" secondItem="Ffw-Pm-5cm" secondAttribute="bottom" constant="10" id="izg-eZ-0IB"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="LKL-Lr-zk7" secondAttribute="bottom" id="om3-iT-f7F"/>
+                            <constraint firstAttribute="trailing" secondItem="vMl-GM-FWR" secondAttribute="trailing" constant="10" id="sWg-Tg-11X"/>
+                            <constraint firstAttribute="trailing" secondItem="Dts-4j-gw0" secondAttribute="trailing" constant="10" id="tcE-nv-iLA"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="LKL-Lr-zk7" id="T9v-14-b75"/>
+                        <outlet property="user1" destination="vMl-GM-FWR" id="AxA-uW-O2i"/>
+                        <outlet property="user2" destination="Dts-4j-gw0" id="HBb-QD-PVU"/>
+                        <outlet property="user3" destination="Ffw-Pm-5cm" id="y8R-d9-9dT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
