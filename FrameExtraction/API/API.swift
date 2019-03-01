@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-let baseURL = "http://192.168.0.204"
+let baseURL = "http://192.168.0.204/API"
 
 class API: NSObject {
     static let shared = API()
