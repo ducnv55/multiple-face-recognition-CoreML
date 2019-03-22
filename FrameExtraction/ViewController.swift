@@ -22,9 +22,15 @@ class ViewController: UIViewController, FrameExtractorDelegate {
     var totalFacesCount = 0
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var firstPersonLabel: UILabel!
+    @IBOutlet weak var secondPersonLabel: UILabel!
+    @IBOutlet weak var thirdPersonLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        firstPersonLabel.text = nil
+        secondPersonLabel.text = nil
+        thirdPersonLabel.text = nil
         frameExtractor = FrameExtractor()
         frameExtractor.delegate = self
     }
@@ -51,9 +57,9 @@ class ViewController: UIViewController, FrameExtractorDelegate {
                 DispatchQueue.main.async {
                     guard let faceObservation = res as? VNFaceObservation else { return }
                     let boundingBox = faceObservation.boundingBox
-                    let size = CGSize(width: boundingBox.width * self.view.bounds.width * 2.5,
-                                      height: boundingBox.height * self.view.bounds.height * 1.5)
-                    let origin = CGPoint(x: boundingBox.minX * self.view.bounds.width - boundingBox.width * self.view.bounds.width * 0.2,
+                    let size = CGSize(width: boundingBox.width * self.view.bounds.width,
+                                      height: boundingBox.height * self.view.bounds.height * 2)
+                    let origin = CGPoint(x: boundingBox.minX * self.view.bounds.width - boundingBox.width * self.view.bounds.width * 0.3,
                                          y: (1 - faceObservation.boundingBox.minY) * self.view.bounds.height - size.height)
                     
                     self.applyDetectView(frame: CGRect(origin: origin, size: size))
@@ -193,7 +199,7 @@ class ViewController: UIViewController, FrameExtractorDelegate {
     func checkPersonIsTrusted(confidence: Float, name: String) {
         print("\(name) - \(confidence)")
         // person with recognition's confidence more than 90% is trusted
-        if confidence > 0.9 {
+        if confidence > 0.2 {
             print("\(name) - \(confidence * 100)%")
             if classifiedList[name] == nil {
                 classifiedList[name] = Date()
@@ -211,10 +217,26 @@ class ViewController: UIViewController, FrameExtractorDelegate {
     }
     
     private func checkin(name: String) {
+        checkAppFirstTime()
+        thirdPersonLabel.text = secondPersonLabel.text
+        secondPersonLabel.text = firstPersonLabel.text
+        firstPersonLabel.text = name.uppercased() + " has checked in"
         API.shared.callApi(endpoint: "/time.json", success: { (data) in
             print(data as Any)
         }) { (error) in
             print(error)
+        }
+    }
+    
+    private func checkAppFirstTime() {
+        if let _ = firstPersonLabel.text {
+            firstPersonLabel.isHidden = false
+        }
+        if let _ = secondPersonLabel.text {
+            secondPersonLabel.isHidden = false
+        }
+        if let _ = thirdPersonLabel.text {
+            thirdPersonLabel.isHidden = false
         }
     }
 }
